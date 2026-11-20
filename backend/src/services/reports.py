@@ -14,7 +14,8 @@ def deliver(db, report):
     if not j or not j.approved: return
     out=io.StringIO()
     out.write('\ufeff')
-    table=j.result.get('table',{})
+    # \u7a33\u5b9a\u540d\u5355\u8bd5\u9a8c\u4ea4\u4ed8\u5176\u65b0\u7b80\u62a5\u5feb\u7167\uff1b\u65e7\u8bd5\u9a8c\u4ecd\u4ea4\u4ed8\u539f\u9a8c\u8bc1\u660e\u7ec6\uff0c\u4fdd\u6301\u5f52\u6863\u539f\u6837\u3002
+    table=j.result.get('briefing_table') or j.result.get('table',{})
     cols=table.get('columns',[])
     writer=csv.writer(out)
     def safe(v):
